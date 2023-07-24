@@ -1,12 +1,54 @@
 import { Hand } from '../src/hand';
 
 describe('Hand', () => {
+
+    it('should return 8 if hand contains 4 cards with the same value', function () {
+        const fourOfAKind: string[] = ['9h', '9s', '9c', '9d', '3d'];
+        const hand = new Hand();
+        const expectedScore = 8;
+
+        const actualScore = hand.calculateScore(fourOfAKind);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
+    it('should return 7 if hand contains 3 cards of the same value, with the remaining 2 cards forming a pair', function () {
+        const fullHouse: string[] = ['6d', '6s', '6h', '3c', '3s']
+        const hand = new Hand();
+        const expectedScore = 7;
+
+        const actualScore = hand.calculateScore(fullHouse);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
     it('should return 6 if hand is flush', () => {
         const flush: string[] = ['2h', '7h', 'Jh', 'Ah', '4h'];
         const hand = new Hand();
         const expectedScore = 6;
 
         const actualScore = hand.calculateScore(flush);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
+
+    it('should return 3 if hand has two pairs', function () {
+        const twoPairs: string[] = ['Qd', 'Qs', '5h', '2c', '5s'];
+        const hand = new Hand();
+        const expectedScore = 3;
+
+        const actualScore = hand.calculateScore(twoPairs);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
+    it('should return 2 if hand is pair', () => {
+        const pair: string[] = ['Kc', 'Kd', '7c', '2s', 'Jh'];
+        const hand = new Hand();
+        const expectedScore = 2;
+
+        const actualScore = hand.calculateScore(pair);
 
         expect(actualScore).toEqual(expectedScore);
     });
