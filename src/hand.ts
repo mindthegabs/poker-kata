@@ -96,7 +96,7 @@ export class Hand {
         return this.cardValueMap.size === 3;
     }
 
-    private isRoyalFlush(inputHand: string[]): boolean {
+    private isRoyalFlush(): boolean {
 
         const royalValues :string[] = ['A', 'K', 'Q', 'J', 'T'];
 
