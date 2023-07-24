@@ -8,7 +8,7 @@ export class Hand {
         //and the value is the number of the occurances of that value in the hand
         this.cardValueMap = this.createCardMap(inputHand);
 
-        if (this.isRoyalFlush(inputHand)) {
+        if (this.isRoyalFlush()) {
             return 10;
         }
 
