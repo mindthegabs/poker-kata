@@ -2,6 +2,18 @@ import { Hand } from '../src/hand';
 
 describe('Hand', () => {
 
+
+    it('should return 10 if hand contains 5 cards of the same suit, where the values are Ace, King, Queen, Jack,Ten', function () {
+        const royalFlush: string[] = ['Ac', 'Kc', 'Qc', 'Jc', 'Tc'];
+        const hand = new Hand();
+        const expectedScore = 10;
+
+        const actualScore = hand.calculateScore(royalFlush);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
+
     it('should return 8 if hand contains 4 cards with the same value', function () {
         const fourOfAKind: string[] = ['9h', '9s', '9c', '9d', '3d'];
         const hand = new Hand();
@@ -32,6 +44,15 @@ describe('Hand', () => {
         expect(actualScore).toEqual(expectedScore);
     });
 
+    it('should return 4 if three of the cards have the same value', function () {
+        const threeOfAKind: string[] = ['8h', '8s', '8c', '2c', 'Td'];
+        const hand = new Hand();
+        const expectedScore = 4;
+
+        const actualScore = hand.calculateScore(threeOfAKind);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
 
     it('should return 3 if hand has two pairs', function () {
         const twoPairs: string[] = ['Qd', 'Qs', '5h', '2c', '5s'];

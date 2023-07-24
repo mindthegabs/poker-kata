@@ -1,12 +1,16 @@
 export class Hand {
 
-    private cardMap: Map<string, number>;
+    private cardValueMap: Map<string, number>;
 
     calculateScore(inputHand: string[]): number {
         let highHandScore: number = 1;
 
         //and the value is the number of the occurances of that value in the hand
-        this.cardMap = this.createCardMap(inputHand);
+        this.cardValueMap = this.createCardMap(inputHand);
+
+        if (this.isRoyalFlush(inputHand)) {
+            return 10;
+        }
 
         if (this.isFourOfAKind()) {
             return 8;
@@ -19,7 +23,6 @@ export class Hand {
         if (this.isFlush(inputHand)) {
             return 6;
         }
-
 
         if (this.isThreeOfAKind()) {
             return 4;
@@ -52,6 +55,7 @@ export class Hand {
     }
 
     private isFlush(inputHand: string[]): boolean {
+        //TODO create new card object with getValue and getSuit instead of charAt(...)
         const suit = inputHand[0].charAt(1);
 
         for (const card of inputHand) {
@@ -63,11 +67,11 @@ export class Hand {
     }
 
     private isPair() {
-        return this.cardMap.size === 4;
+        return this.cardValueMap.size === 4;
     }
 
     private isFourOfAKind() {
-        for (const valueOccurrences of this.cardMap.values()) {
+        for (const valueOccurrences of this.cardValueMap.values()) {
             if (valueOccurrences === 4) {
                 return true;
             }
@@ -76,11 +80,11 @@ export class Hand {
     }
 
     private isFullHouse() {
-        return this.cardMap.size === 2;
+        return this.cardValueMap.size === 2;
     }
 
     private isThreeOfAKind() {
-        for (const valueOccurrences of this.cardMap.values()) {
+        for (const valueOccurrences of this.cardValueMap.values()) {
             if (valueOccurrences === 3) {
                 return true;
             }
@@ -89,6 +93,18 @@ export class Hand {
     }
 
     private isTwoPairs() {
-        return this.cardMap.size === 3;
+        return this.cardValueMap.size === 3;
+    }
+
+    private isRoyalFlush(inputHand: string[]): boolean {
+
+        const royalValues :string[] = ['A', 'K', 'Q', 'J', 'T'];
+
+        for (const value of royalValues) {
+            if (!this.cardValueMap.has(value)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
