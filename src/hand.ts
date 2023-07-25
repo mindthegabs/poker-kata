@@ -1,5 +1,6 @@
-export class Hand {
+import {Card} from './card';
 
+export class Hand {
     private cardValueMap: Map<string, number>;
     private inputHand: string[];
     private highHandScore: number = 1;
@@ -7,9 +8,7 @@ export class Hand {
     calculateScore(inputHand: string[]): number {
         this.inputHand = inputHand;
 
-
-        //and the value is the number of the occurrences of that value in the hand
-        this.cardValueMap = this.createCardMap();
+        this.cardValueMap = this.createCardValueMap();
 
         if (this.isRoyalFlush()) {
             return 10;
@@ -39,7 +38,6 @@ export class Hand {
             return 4;
         }
 
-
         if (this.isTwoPairs()) {
             return 3;
         }
@@ -50,24 +48,23 @@ export class Hand {
         return this.highHandScore;
     }
 
-    private createCardMap(): Map<string, number> {
-        //create a map of the inputHand where the key is the value of the card
-        const cardMap: Map<string, number> = new Map();
+    private createCardValueMap(): Map<string, number> {
+        //map of the inputHand where the key is the value of the card and the value is the occurrence of value
+        const cardValueMap: Map<string, number> = new Map();
         for (const identifier of this.inputHand) {
-            let currentValue = identifier.charAt(0);
-            if (cardMap.has(currentValue)) {
-                cardMap.set(currentValue, cardMap.get(currentValue) + 1);
+            let currentValue = new Card(identifier).value;
+            if (cardValueMap.has(currentValue)) {
+                cardValueMap.set(currentValue, cardValueMap.get(currentValue) + 1);
             } else {
-                cardMap.set(currentValue, 1);
+                cardValueMap.set(currentValue, 1);
             }
         }
 
-        return cardMap;
+        return cardValueMap;
     }
 
     private isFlush(): boolean {
-        //TODO create new card object with getValue and getSuit instead of charAt(...)
-        const suit = this.inputHand[0].charAt(1);
+        const suit = new Card(this.inputHand[0]).suit;
 
         for (const card of this.inputHand) {
             if (card.charAt(1) !== suit) {
@@ -109,7 +106,7 @@ export class Hand {
 
     private isRoyalFlush(): boolean {
 
-        const royalValues :string[] = ['A', 'K', 'Q', 'J', 'T'];
+        const royalValues: string[] = ['A', 'K', 'Q', 'J', 'T'];
 
         for (const value of royalValues) {
             if (!this.cardValueMap.has(value)) {
@@ -125,7 +122,7 @@ export class Hand {
 
 
     private isStraight() {
-        const cardValuesDictionary: {[key:string]: number} = {
+        const cardValuesDictionary: { [key: string]: number } = {
             '2': 2,
             '3': 3,
             '4': 4,
