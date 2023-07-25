@@ -13,6 +13,16 @@ describe('Hand', () => {
         expect(actualScore).toEqual(expectedScore);
     });
 
+    it('should return 9 if hand contains 5 cards of the same suit with consecutive values', function () {
+        const straightFlush: string[] = ['7d', '8d', '9d', 'Td', 'Jd']
+        const hand = new Hand();
+        const expectedScore = 9;
+
+        const actualScore = hand.calculateScore(straightFlush);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
 
     it('should return 8 if hand contains 4 cards with the same value', function () {
         const fourOfAKind: string[] = ['9h', '9s', '9c', '9d', '3d'];
@@ -43,6 +53,17 @@ describe('Hand', () => {
 
         expect(actualScore).toEqual(expectedScore);
     });
+
+    it('should return 5 if hand contains 5 consecutive values', () => {
+        const straight: string[] = ['3d', '4c', '5d', '6s', '7h'];
+        const hand = new Hand();
+        const expectedScore = 5;
+
+        const actualScore = hand.calculateScore(straight);
+
+        expect(actualScore).toEqual(expectedScore);
+    });
+
 
     it('should return 4 if three of the cards have the same value', function () {
         const threeOfAKind: string[] = ['8h', '8s', '8c', '2c', 'Td'];
