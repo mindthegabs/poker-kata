@@ -1,50 +1,34 @@
-import {Card} from './card';
+import {Card} from './card.ts';
+import {Pair} from './rules/pair.ts';
+import {Rule} from "./rule.ts";
+import {TwoPairs} from "./rules/twoPairs.ts";
+import {ThreeOfAKind} from "./rules/threeOfAKind.ts";
+import {FourOfAKind} from "./rules/fourOfAKind.ts";
+import {Straight} from "./rules/straight.ts";
+import {Flush} from "./rules/flush.ts";
+import {FullHouse} from "./rules/fullHouse.ts";
+import {RoyalFlush} from "./rules/royalFlush.ts";
+import {StraightFlush} from "./rules/straightFlush.ts";
 
 export class Hand {
     private cardValueMap: Map<string, number>;
     private inputHand: string[];
     private highHandScore: number = 1;
 
+    private rules : Rule[] = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(),new Pair()];
+
+
     calculateScore(inputHand: string[]): number {
         this.inputHand = inputHand;
 
         this.cardValueMap = this.createCardValueMap();
 
-        if (this.isRoyalFlush()) {
-            return 10;
+        for (const rule of this.rules) {
+            if (rule.checkRule(this.inputHand, this.cardValueMap)) {
+                return rule.score;
+            }
         }
 
-        if (this.isStraightFlush()) {
-            return 9;
-        }
-
-        if (this.isFourOfAKind()) {
-            return 8;
-        }
-
-        if (this.isFullHouse()) {
-            return 7;
-        }
-
-        if (this.isFlush()) {
-            return 6;
-        }
-
-        if (this.isStraight()) {
-            return 5;
-        }
-
-        if (this.isThreeOfAKind()) {
-            return 4;
-        }
-
-        if (this.isTwoPairs()) {
-            return 3;
-        }
-
-        if (this.isPair()) {
-            return 2;
-        }
         return this.highHandScore;
     }
 
@@ -63,91 +47,4 @@ export class Hand {
         return cardValueMap;
     }
 
-    private isFlush(): boolean {
-        const suit = new Card(this.inputHand[0]).suit;
-
-        for (const card of this.inputHand) {
-            if (card.charAt(1) !== suit) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private isPair() {
-        return this.cardValueMap.size === 4;
-    }
-
-    private isFourOfAKind() {
-        for (const valueOccurrences of this.cardValueMap.values()) {
-            if (valueOccurrences === 4) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private isFullHouse() {
-        return this.cardValueMap.size === 2;
-    }
-
-    private isThreeOfAKind() {
-        for (const valueOccurrences of this.cardValueMap.values()) {
-            if (valueOccurrences === 3) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private isTwoPairs() {
-        return this.cardValueMap.size === 3;
-    }
-
-    private isRoyalFlush(): boolean {
-
-        const royalValues: string[] = ['A', 'K', 'Q', 'J', 'T'];
-
-        for (const value of royalValues) {
-            if (!this.cardValueMap.has(value)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private isStraightFlush() {
-        return this.isStraight() && this.isFlush();
-    }
-
-
-    private isStraight() {
-        const cardValuesDictionary: { [key: string]: number } = {
-            '2': 2,
-            '3': 3,
-            '4': 4,
-            '5': 5,
-            '6': 6,
-            '7': 7,
-            '8': 8,
-            '9': 9,
-            'T': 10,
-            'J': 11,
-            'Q': 12,
-            'K': 13,
-            'A': 14
-        }
-
-        const intValues: number[] = this.inputHand.map((card) => cardValuesDictionary[card[0]]);
-
-        intValues.sort((a, b) => a - b);
-
-        for (let i = 1; i < intValues.length; i++) {
-            if (intValues[i] - intValues[i - 1] !== 1) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }
