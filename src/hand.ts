@@ -15,7 +15,7 @@ export class Hand {
     private inputHand: string[];
     private highHandScore: number = 1;
 
-    private rules : Rule[] = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(),new Pair()];
+    private rules: Rule[] = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
 
     calculateScore(inputHand: string[]): number {

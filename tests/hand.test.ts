@@ -2,7 +2,6 @@ import { Hand } from '../src/hand';
 
 describe('Hand', () => {
 
-
     it('should return 10 if hand contains 5 cards of the same suit, where the values are Ace, King, Queen, Jack,Ten', function () {
         const royalFlush: string[] = ['Ac', 'Kc', 'Qc', 'Jc', 'Tc'];
         const hand = new Hand();
