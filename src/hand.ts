@@ -32,8 +32,8 @@ export class Hand {
         return this.highHandScore;
     }
 
+    //map of the inputHand where the key is the card value and the value is the number of cards of that value
     private createCardValueMap(): Map<string, number> {
-        //map of the inputHand where the key is the value of the card and the value is the occurrence of value
         const cardValueMap: Map<string, number> = new Map();
         for (const identifier of this.inputHand) {
             let currentValue = new Card(identifier).value;

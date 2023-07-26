@@ -1,24 +1,28 @@
 import {Rule} from "../rule.ts";
+import {Flush} from "./flush.ts";
 
 export class RoyalFlush extends Rule {
-    checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
 
-        //TODO rename check if isRoyal
-        const royalValues: string[] = ['A', 'K', 'Q', 'J', 'T'];
-
-        for (const value of royalValues) {
-            if (!cardValueMap.has(value)) {
-                return false;
-            }
-        }
-
-
-        //TODO check if isFlush
-        return true;
-    }
+    private static readonly royalFlushValues: string[] = ['A', 'K', 'Q', 'J', 'T'];
 
     constructor() {
         super();
         this.score = 10;
     }
+
+    checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
+
+        return RoyalFlush.containsRoyalFlushValues(cardValueMap) && new Flush().checkRule(inputHand, cardValueMap);
+    }
+
+    private static containsRoyalFlushValues(cardValueMap):boolean{
+        for (const value of RoyalFlush.royalFlushValues) {
+            if (!cardValueMap.has(value)) {
+                return false;
+            }
+        }
+        return true;
+
+}
+
 }

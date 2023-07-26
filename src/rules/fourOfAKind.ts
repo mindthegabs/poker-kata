@@ -1,6 +1,12 @@
 import {Rule} from "../rule.ts";
 
 export class FourOfAKind extends Rule{
+
+    constructor(){
+        super();
+        this.score = 8;
+    }
+
     checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
         for (const valueOccurrences of cardValueMap.values()) {
             if (valueOccurrences === 4) {
@@ -8,10 +14,5 @@ export class FourOfAKind extends Rule{
             }
         }
         return false;
-    }
-
-    constructor(){
-        super();
-        this.score = 8;
     }
 }
