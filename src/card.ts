@@ -1,18 +1,31 @@
+import { CardValue } from "./enums/cardValue.ts";
+import { CardSuit } from "./enums/cardSuit.ts";
+
 export class Card {
-    private readonly _value: string; //2, 3, 4 ,5, 6, 7, 8, 9, T , J, Q, K, A
-    private readonly _suit: string; //d, h, s, c
+  private readonly _value: CardValue;
+  private readonly _suit: CardSuit;
 
-    constructor(identifier: string) {
-        this._value = identifier.charAt(0);
-        this._suit = identifier.charAt(1);
+  constructor(identifier: string) {
+    const value = identifier.charAt(0) as CardValue;
+    const suit = identifier.charAt(1) as CardSuit;
+
+    if (!Object.values(CardValue).includes(value)) {
+      throw new Error('Invalid card value');
     }
 
-
-    get value(): string {
-        return this._value;
+    if (!Object.values(CardSuit).includes(suit)) {
+      throw new Error('Invalid card suit');
     }
 
-    get suit(): string {
-        return this._suit;
-    }
+    this._value = value;
+    this._suit = suit;
+  }
+
+  get value(): CardValue {
+    return this._value;
+  }
+
+  get suit(): CardSuit {
+    return this._suit;
+  }
 }
