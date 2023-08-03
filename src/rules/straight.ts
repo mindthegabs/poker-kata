@@ -1,6 +1,11 @@
 import {Rule} from "../rule.ts";
 
 export class Straight extends Rule {
+    constructor() {
+        super();
+        this.score = 5;
+    }
+
     private static readonly cardValuesDictionary: { [key: string]: number } = {
         '2': 2,
         '3': 3,
@@ -17,19 +22,14 @@ export class Straight extends Rule {
         'A': 14
     }
 
-    constructor() {
-        super();
-        this.score = 5;
-    }
-
     checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
 
-        const intValues: number[] = inputHand.map((card) => Straight.cardValuesDictionary[card[0]]);
+        const numericInputHandValues: number[] = inputHand.map((card) => Straight.cardValuesDictionary[card[0]]);
 
-        intValues.sort((a, b) => a - b);
+        numericInputHandValues.sort((a, b) => a - b);
 
-        for (let i = 1; i < intValues.length; i++) {
-            if (intValues[i] - intValues[i - 1] !== 1) {
+        for (let i = 1; i < numericInputHandValues.length; i++) {
+            if (numericInputHandValues[i] - numericInputHandValues[i - 1] !== 1) {
                 return false;
             }
         }
