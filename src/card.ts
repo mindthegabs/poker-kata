@@ -1,31 +1,35 @@
-import { CardValue } from "./enums/cardValue.ts";
-import { CardSuit } from "./enums/cardSuit.ts";
+import {CardValue} from "./enums/cardValue.ts";
+import {CardSuit} from "./enums/cardSuit.ts";
 
 export class Card {
-  private readonly _value: CardValue;
-  private readonly _suit: CardSuit;
+    private readonly _value: CardValue;
+    private readonly _suit: CardSuit;
 
-  constructor(identifier: string) {
-    const value = identifier.charAt(0) as CardValue;
-    const suit = identifier.charAt(1) as CardSuit;
+    constructor(identifier: string) {
+        const value = identifier.charAt(0) as CardValue;
+        const suit = identifier.charAt(1) as CardSuit;
 
-    if (!Object.values(CardValue).includes(value)) {
-      throw new Error('Invalid card value');
+        this.validateCard(value, suit);
+
+        this._value = value;
+        this._suit = suit;
     }
 
-    if (!Object.values(CardSuit).includes(suit)) {
-      throw new Error('Invalid card suit');
+    get value(): CardValue {
+        return this._value;
     }
 
-    this._value = value;
-    this._suit = suit;
-  }
+    get suit(): CardSuit {
+        return this._suit;
+    }
 
-  get value(): CardValue {
-    return this._value;
-  }
+    private validateCard(value: CardValue, suit: CardSuit): void {
+        if (!Object.values(CardValue).includes(value)) {
+            throw new Error('Invalid card value');
+        }
 
-  get suit(): CardSuit {
-    return this._suit;
-  }
+        if (!Object.values(CardSuit).includes(suit)) {
+            throw new Error('Invalid card suit');
+        }
+    }
 }
