@@ -35,11 +35,11 @@ export class Card {
         this._suit = suit;
     }
 
-    get value(): CardValue {
+    getValue(): CardValue {
         return this._value;
     }
 
-    get suit(): CardSuit {
+    getSuit(): CardSuit {
         return this._suit;
     }
 

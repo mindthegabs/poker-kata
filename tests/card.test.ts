@@ -8,8 +8,8 @@ describe('Card', () => {
 
         const card = new Card(identifier);
 
-        expect(card.value).toBe(expectedValue);
-        expect(card.suit).toBe(expectedSuit);
+        expect(card.getValue()).toBe(expectedValue);
+        expect(card.getSuit()).toBe(expectedSuit);
 
     });
 

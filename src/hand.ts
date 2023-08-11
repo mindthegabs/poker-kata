@@ -33,7 +33,7 @@ export class Hand {
     private createCardValueMap(): Map<string, number> {
         const cardValueMap: Map<string, number> = new Map();
         for (const identifier of this.inputHand) {
-            let currentValue = new Card(identifier).value;
+            let currentValue = new Card(identifier).getValue();
             if (cardValueMap.has(currentValue)) {
                 cardValueMap.set(currentValue, cardValueMap.get(currentValue) + 1);
             } else {
