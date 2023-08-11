@@ -6,7 +6,7 @@ export class Straight extends Rule {
         this.score = 5;
     }
 
-    private static readonly cardValuesDictionary: { [key: string]: number } = {
+    private static readonly cardValuesDictionary = {
         '2': 2,
         '3': 3,
         '4': 4,

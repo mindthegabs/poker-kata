@@ -1,6 +1,5 @@
 import {Card} from './card.ts';
 import {Pair} from './rules/pair.ts';
-import {Rule} from "./rule.ts";
 import {TwoPairs} from "./rules/twoPairs.ts";
 import {ThreeOfAKind} from "./rules/threeOfAKind.ts";
 import {FourOfAKind} from "./rules/fourOfAKind.ts";
@@ -13,8 +12,8 @@ import {StraightFlush} from "./rules/straightFlush.ts";
 export class Hand {
     private cardValueMap: Map<string, number>;
     private inputHand: string[];
-    private highHandScore: number = 1;
-    private rules: Rule[] = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
+    private highHandScore = 1;
+    private rules= [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
     calculateScore(inputHand: string[]): number {
         this.inputHand = inputHand;

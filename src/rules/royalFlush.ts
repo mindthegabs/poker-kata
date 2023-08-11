@@ -2,7 +2,7 @@ import {Rule} from "../rule.ts";
 import {Flush} from "./flush.ts";
 
 export class RoyalFlush extends Rule {
-    private static readonly royalFlushValues: string[] = ['A', 'K', 'Q', 'J', 'T'];
+    private static readonly royalFlushValues = ['A', 'K', 'Q', 'J', 'T'];
 
     constructor() {
         super();
