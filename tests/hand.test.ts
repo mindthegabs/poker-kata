@@ -2,7 +2,7 @@ import {Hand} from '../src/hand';
 
 describe('Hand', () => {
 
-    it('should return 10 if hand contains 5 cards of the same suit, where the values are Ace, King, Queen, Jack,Ten', function () {
+    it('should return 10 if hand contains 5 cards of the same suit, where the values are Ace, King, Queen, Jack,Ten', () => {
         const royalFlush: string[] = ['Ac', 'Kc', 'Qc', 'Jc', 'Tc'];
         const hand = new Hand();
         const expectedScore = 10;
@@ -12,7 +12,7 @@ describe('Hand', () => {
         expect(actualScore).toEqual(expectedScore);
     });
 
-    it('should return 9 if hand contains 5 cards of the same suit with consecutive values', function () {
+    it('should return 9 if hand contains 5 cards of the same suit with consecutive values', () => {
         const straightFlush: string[] = ['7d', '8d', '9d', 'Td', 'Jd']
         const hand = new Hand();
         const expectedScore = 9;
@@ -23,7 +23,7 @@ describe('Hand', () => {
     });
 
 
-    it('should return 8 if hand contains 4 cards with the same value', function () {
+    it('should return 8 if hand contains 4 cards with the same value', () => {
         const fourOfAKind: string[] = ['9h', '9s', '9c', '9d', '3d'];
         const hand = new Hand();
         const expectedScore = 8;
@@ -33,7 +33,7 @@ describe('Hand', () => {
         expect(actualScore).toEqual(expectedScore);
     });
 
-    it('should return 7 if hand contains 3 cards of the same value, with the remaining 2 cards forming a pair', function () {
+    it('should return 7 if hand contains 3 cards of the same value, with the remaining 2 cards forming a pair', () => {
         const fullHouse: string[] = ['6d', '6s', '6h', '3c', '3s']
         const hand = new Hand();
         const expectedScore = 7;
@@ -64,7 +64,7 @@ describe('Hand', () => {
     });
 
 
-    it('should return 4 if three of the cards have the same value', function () {
+    it('should return 4 if three of the cards have the same value', () => {
         const threeOfAKind: string[] = ['8h', '8s', '8c', '2c', 'Td'];
         const hand = new Hand();
         const expectedScore = 4;
@@ -74,7 +74,7 @@ describe('Hand', () => {
         expect(actualScore).toEqual(expectedScore);
     });
 
-    it('should return 3 if hand has two pairs', function () {
+    it('should return 3 if hand has two pairs', () => {
         const twoPairs: string[] = ['Qd', 'Qs', '5h', '2c', '5s'];
         const hand = new Hand();
         const expectedScore = 3;
