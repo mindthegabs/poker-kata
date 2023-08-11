@@ -1,7 +1,6 @@
 import {Hand} from '../src/hand';
 
 describe('Hand', () => {
-
     it('should return 10 if hand contains 5 cards of the same suit, where the values are Ace, King, Queen, Jack,Ten', () => {
         const royalFlush: string[] = ['Ac', 'Kc', 'Qc', 'Jc', 'Tc'];
         const hand = new Hand();
@@ -63,7 +62,6 @@ describe('Hand', () => {
         expect(actualScore).toEqual(expectedScore);
     });
 
-
     it('should return 4 if three of the cards have the same value', () => {
         const threeOfAKind: string[] = ['8h', '8s', '8c', '2c', 'Td'];
         const hand = new Hand();
@@ -103,5 +101,4 @@ describe('Hand', () => {
 
         expect(actualScore).toEqual(expectedScore);
     });
-
 });

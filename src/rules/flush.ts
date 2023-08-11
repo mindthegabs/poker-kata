@@ -2,7 +2,6 @@ import {Rule} from "../rule.ts";
 import {Card} from "../card.ts";
 
 export class Flush extends Rule{
-
     constructor(){
         super();
         this.score = 6;

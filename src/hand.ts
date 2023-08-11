@@ -16,7 +16,6 @@ export class Hand {
     private highHandScore: number = 1;
     private rules: Rule[] = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
-
     calculateScore(inputHand: string[]): number {
         this.inputHand = inputHand;
 
@@ -45,5 +44,4 @@ export class Hand {
 
         return cardValueMap;
     }
-
 }

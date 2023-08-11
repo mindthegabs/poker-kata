@@ -1,7 +1,6 @@
 import { Hand } from '../src/hand';
 
 describe('Hand', () => {
-    const hand = new Hand();
 
     test.each([
         [10, ['Ac', 'Kc', 'Qc', 'Jc', 'Tc']], // Royal Flush
@@ -15,7 +14,10 @@ describe('Hand', () => {
         [2, ['Kc', 'Kd', '7c', '2s', 'Jh']], // Pair
         [1, ['Qd', '7s', '5h', '3c', 'Ts']], // High Card
     ])('should return %p when hand is %p', (expectedScore, inputHand) => {
+        const hand = new Hand();
+
         const actualScore = hand.calculateScore(inputHand);
+
         expect(actualScore).toEqual(expectedScore);
     });
 });

@@ -1,7 +1,6 @@
 import {Rule} from "../rule.ts";
 
 export class FourOfAKind extends Rule{
-
     constructor(){
         super();
         this.score = 8;

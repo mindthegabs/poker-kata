@@ -23,7 +23,6 @@ export class Straight extends Rule {
     }
 
     checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
-
         const numericInputHandValues: number[] = inputHand.map((card) => Straight.cardValuesDictionary[card[0]]);
 
         numericInputHandValues.sort((a, b) => a - b);

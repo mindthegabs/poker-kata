@@ -31,7 +31,6 @@ describe('Card', () => {
         expect(result).toThrowError(expectedError);
     });
 
-
     it('should throw an error for an empty identifier', () => {
         const identifier = '';
         const expectedError = 'Invalid card value';
@@ -40,5 +39,4 @@ describe('Card', () => {
 
         expect(result).toThrowError(expectedError);
     });
-
 });
