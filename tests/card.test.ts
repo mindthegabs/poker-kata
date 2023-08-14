@@ -6,7 +6,7 @@ describe('Card', () => {
         const expectedValue = 'A';
         const expectedSuit = 's';
 
-        const card = new Card(identifier);
+        const card = Card.fromIdentifier(identifier)
 
         expect(card.getValue()).toBe(expectedValue);
         expect(card.getSuit()).toBe(expectedSuit);
@@ -17,7 +17,7 @@ describe('Card', () => {
         const identifier = 'Xh';
         const expectedError = 'Invalid card value';
 
-        const result = () => new Card(identifier);
+        const result = () => Card.fromIdentifier(identifier);
 
         expect(result).toThrowError(expectedError);
     });
@@ -26,7 +26,7 @@ describe('Card', () => {
         const identifier = '2P';
         const expectedError = 'Invalid card suit';
 
-        const result = () => new Card(identifier);
+        const result = () => Card.fromIdentifier(identifier);
 
         expect(result).toThrowError(expectedError);
     });
@@ -35,7 +35,7 @@ describe('Card', () => {
         const identifier = '';
         const expectedError = 'Invalid card value';
 
-        const result = () => new Card(identifier);
+        const result = () => Card.fromIdentifier(identifier);
 
         expect(result).toThrowError(expectedError);
     });

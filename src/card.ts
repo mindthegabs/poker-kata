@@ -22,17 +22,17 @@
 }
 
 export class Card {
-    private readonly _value: CardValue;
-    private readonly _suit: CardSuit;
+    private constructor(private readonly _value: CardValue, private readonly _suit: CardSuit) {}
 
-    constructor(identifier: string) {
+    static fromIdentifier(identifier: string): Card {
         const value = identifier.charAt(0) as CardValue;
         const suit = identifier.charAt(1) as CardSuit;
 
-        this.validateCard(value, suit);
+        const card = new Card(value, suit);
+        card.validateCard(value, suit);
+        
+        return card;
 
-        this._value = value;
-        this._suit = suit;
     }
 
     getValue(): CardValue {
@@ -43,7 +43,7 @@ export class Card {
         return this._suit;
     }
 
-    private validateCard(value: CardValue, suit: CardSuit): void {
+    public validateCard(value: CardValue, suit: CardSuit): void {
         if (!Object.values(CardValue).includes(value)) {
             throw new Error('Invalid card value');
         }
