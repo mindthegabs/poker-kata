@@ -1,3 +1,5 @@
+import { InvalidCardIdentifier } from "./errors/InvalidCardIdentifier.ts";
+
  enum CardValue {
     Two = '2',
     Three = '3',
@@ -25,14 +27,12 @@ export class Card {
     private constructor(private readonly _value: CardValue, private readonly _suit: CardSuit) {}
 
     static fromIdentifier(identifier: string): Card {
+        CardValidator.validateCard(identifier);
+        
         const value = identifier.charAt(0) as CardValue;
         const suit = identifier.charAt(1) as CardSuit;
 
-        const card = new Card(value, suit);
-        card.validateCard(value, suit);
-        
-        return card;
-
+        return new Card(value, suit);
     }
 
     getValue(): CardValue {
@@ -42,14 +42,23 @@ export class Card {
     getSuit(): CardSuit {
         return this._suit;
     }
+}
 
-    public validateCard(value: CardValue, suit: CardSuit): void {
+class CardValidator {
+    static validateCard(identifier: string): void {
+        if (identifier.length !== 2) {
+            throw new InvalidCardIdentifier(identifier);
+        }
+
+        const value = identifier.charAt(0) as CardValue;
+        const suit = identifier.charAt(1) as CardSuit;
+
         if (!Object.values(CardValue).includes(value)) {
-            throw new Error('Invalid card value');
+            throw new InvalidCardIdentifier(identifier);
         }
 
         if (!Object.values(CardSuit).includes(suit)) {
-            throw new Error('Invalid card suit');
+            throw new InvalidCardIdentifier(identifier);
         }
     }
 }
