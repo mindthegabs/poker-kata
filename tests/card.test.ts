@@ -1,5 +1,7 @@
 import {Card} from '../src/card';
-import { InvalidCardIdentifier } from '../src/errors/InvalidCardIdentifier';
+import {InvalidSuit} from "../src/errors/InvalidSuit";
+import {InvalidValue} from "../src/errors/InvalidValue";
+import {InvalidIdentifierLength} from "../src/errors/InvalidIdentifierLength";
 
 describe('Card', () => {
     it('should create a card with the specified identifier', () => {
@@ -16,7 +18,7 @@ describe('Card', () => {
 
     it('should throw an error for an invalid card value', () => {
         const identifier = 'Xh';
-        const expectedError = InvalidCardIdentifier;
+        const expectedError = InvalidValue;
 
         const result = () => Card.fromIdentifier(identifier);
 
@@ -25,7 +27,7 @@ describe('Card', () => {
 
     it('should throw an error for an invalid card suit', () => {
         const identifier = '2P';
-        const expectedError = InvalidCardIdentifier;
+        const expectedError = InvalidSuit;
 
         const result = () => Card.fromIdentifier(identifier);
 
@@ -40,6 +42,6 @@ describe('Card', () => {
 
         const result = () => Card.fromIdentifier(identifier);
 
-        expect(result).toThrowError(InvalidCardIdentifier);
+        expect(result).toThrowError(InvalidIdentifierLength);
     });
 });

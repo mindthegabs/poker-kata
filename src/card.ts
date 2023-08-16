@@ -1,4 +1,6 @@
-import { InvalidCardIdentifier } from "./errors/InvalidCardIdentifier.ts";
+import {InvalidIdentifierLength} from "./errors/InvalidIdentifierLength.ts";
+import {InvalidValue} from "./errors/InvalidValue.ts";
+import {InvalidSuit} from "./errors/InvalidSuit.ts";
 
  enum CardValue {
     Two = '2',
@@ -47,18 +49,18 @@ export class Card {
 class CardValidator {
     static validateCard(identifier: string): void {
         if (identifier.length !== 2) {
-            throw new InvalidCardIdentifier(identifier);
+            throw new InvalidIdentifierLength(identifier);
         }
 
         const value = identifier.charAt(0) as CardValue;
         const suit = identifier.charAt(1) as CardSuit;
 
         if (!Object.values(CardValue).includes(value)) {
-            throw new InvalidCardIdentifier(identifier);
+            throw new InvalidValue(identifier);
         }
 
         if (!Object.values(CardSuit).includes(suit)) {
-            throw new InvalidCardIdentifier(identifier);
+            throw new InvalidSuit(identifier);
         }
     }
 }
