@@ -20,18 +20,18 @@ describe('Card', () => {
         const identifier = 'Xh';
         const expectedError = InvalidValue;
 
-        const result = () => Card.fromIdentifier(identifier);
+        const createCard = () => Card.fromIdentifier(identifier);
 
-        expect(result).toThrowError(expectedError);
+        expect(createCard).toThrowError(expectedError);
     });
 
     it('should throw an error for an invalid card suit', () => {
         const identifier = '2P';
         const expectedError = InvalidSuit;
 
-        const result = () => Card.fromIdentifier(identifier);
+        const createCard = () => Card.fromIdentifier(identifier);
 
-        expect(result).toThrowError(expectedError);
+        expect(createCard).toThrowError(expectedError);
     });
 
     test.each([
@@ -40,8 +40,8 @@ describe('Card', () => {
         ['234']
     ])('should throw an error for identifier %p because of invalid length', (identifier) => {
 
-        const result = () => Card.fromIdentifier(identifier);
+        const createCard = () => Card.fromIdentifier(identifier);
 
-        expect(result).toThrowError(InvalidIdentifierLength);
+        expect(createCard).toThrowError(InvalidIdentifierLength);
     });
 });
