@@ -12,7 +12,7 @@ import {StraightFlush} from "./rules/straightFlush.ts";
 export class Hand {
     private cardValueMap: Map<string, number>;
     private inputHand: string[];
-    private highHandScore = 1;
+    private highCardScore = 1;
     private rules= [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
     calculateScore(inputHand: string[]): number {
@@ -26,7 +26,7 @@ export class Hand {
             }
         }
 
-        return this.highHandScore;
+        return this.highCardScore;
     }
 
     // creates a map of the inputHand where the key is the card value and the value is the number of cards of that value
