@@ -1,5 +1,5 @@
 import {Rule} from "../rule.ts";
-import {Card} from "../card.ts";
+import {FiveCards} from "../hand.ts";
 
 export class Flush extends Rule{
     constructor(){
@@ -7,11 +7,11 @@ export class Flush extends Rule{
         this.score = 6;
     }
 
-    checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
-        const suit = Card.fromIdentifier(inputHand[0]).getSuit();
+    checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
+        const suit = inputHand[0].getSuit();
 
-        for (const identifier of inputHand) {
-            if (Card.fromIdentifier(identifier).getSuit() !== suit) {
+        for (const card of inputHand) {
+            if (card.getSuit() !== suit) {
                 return false;
             }
         }

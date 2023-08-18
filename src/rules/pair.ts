@@ -1,4 +1,5 @@
 import {Rule} from "../rule.ts";
+import {FiveCards} from "../hand.ts";
 
 export class Pair extends Rule {
     constructor() {
@@ -6,7 +7,7 @@ export class Pair extends Rule {
         this.score = 2;
     }
 
-    checkRule(inputHand: string[], cardValueMap: Map <string, number>): boolean {
+    checkRule(inputHand: FiveCards, cardValueMap: Map <string, number>): boolean {
         return cardValueMap.size === 4;
     }
 }

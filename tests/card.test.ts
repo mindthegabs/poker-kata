@@ -9,7 +9,7 @@ describe('Card', () => {
         const expectedValue = 'A';
         const expectedSuit = 's';
 
-        const card = Card.fromIdentifier(identifier)
+        const card = Card.fromIdentifier(identifier);
 
         expect(card.getValue()).toBe(expectedValue);
         expect(card.getSuit()).toBe(expectedSuit);

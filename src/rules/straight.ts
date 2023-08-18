@@ -1,4 +1,5 @@
 import {Rule} from "../rule.ts";
+import {FiveCards} from "../hand.ts";
 
 export class Straight extends Rule {
     constructor() {
@@ -22,8 +23,8 @@ export class Straight extends Rule {
         'A': 14
     }
 
-    checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
-        const numericInputHandValues: number[] = inputHand.map((card) => Straight.cardValuesDictionary[card[0]]);
+    checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
+        const numericInputHandValues: number[] = inputHand.map((card) => Straight.cardValuesDictionary[card.getValue()]);
 
         numericInputHandValues.sort((a, b) => a - b);
 

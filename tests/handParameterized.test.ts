@@ -14,9 +14,9 @@ describe('Hand', () => {
         [2, ['Kc', 'Kd', '7c', '2s', 'Jh']], // Pair
         [1, ['Qd', '7s', '5h', '3c', 'Ts']], // High Card
     ])('should return %p when hand is %p', (expectedScore, inputHand) => {
-        const hand = new Hand();
+        const hand = Hand.fromIdentifiers(inputHand);
 
-        const actualScore = hand.calculateScore(inputHand);
+        const actualScore = hand.calculateScore();
 
         expect(actualScore).toEqual(expectedScore);
     });

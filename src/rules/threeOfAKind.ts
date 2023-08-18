@@ -1,3 +1,4 @@
+import { FiveCards } from "../hand.ts";
 import {Rule} from "../rule.ts";
 
 export class ThreeOfAKind extends Rule {
@@ -6,7 +7,7 @@ export class ThreeOfAKind extends Rule {
         this.score = 4;
     }
 
-    checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
+    checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
         for (const valueOccurrences of cardValueMap.values()) {
             if (valueOccurrences === 3) {
                 return true;

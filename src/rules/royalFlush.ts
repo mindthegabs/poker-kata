@@ -1,5 +1,6 @@
 import {Rule} from "../rule.ts";
 import {Flush} from "./flush.ts";
+import {FiveCards} from "../hand.ts";
 
 export class RoyalFlush extends Rule {
     private static readonly royalFlushValues = ['A', 'K', 'Q', 'J', 'T'];
@@ -9,7 +10,7 @@ export class RoyalFlush extends Rule {
         this.score = 10;
     }
 
-    checkRule(inputHand: string[], cardValueMap: Map<string, number>): boolean {
+    checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
         return RoyalFlush.containsRoyalFlushValues(cardValueMap) && new Flush().checkRule(inputHand, cardValueMap);
     }
 

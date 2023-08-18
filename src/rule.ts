@@ -1,4 +1,6 @@
+import { FiveCards } from "./hand.ts";
+
 export abstract class Rule {
     score: number;
-    abstract checkRule(inputHand: string[], cardValueMap: Map <string, number>): boolean;
+    abstract checkRule(inputHand: FiveCards, cardValueMap: Map <string, number>): boolean;
 }

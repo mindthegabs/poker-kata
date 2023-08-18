@@ -11,13 +11,27 @@ import {StraightFlush} from "./rules/straightFlush.ts";
 
 export class Hand {
     private cardValueMap: Map<string, number>;
-    private inputHand: string[];
+    private readonly inputHand: FiveCards;
     private highCardScore = 1;
     private rules= [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
-    calculateScore(inputHand: string[]): number {
+    
+    constructor(inputHand: FiveCards) {
         this.inputHand = inputHand;
+    }
 
+    static fromIdentifiers(identifiers: string[]): Hand {
+        if (identifiers.length !== 5) {
+            throw new Error('Invalid number of identifiers');
+        }
+
+        const cards = identifiers.map(identifier => Card.fromIdentifier(identifier));
+        const fiveCards: FiveCards = [cards[0], cards[1], cards[2], cards[3], cards[4]];
+
+        return new Hand(fiveCards);
+    }
+
+    calculateScore(): number {
         this.cardValueMap = this.createCardValueMap();
 
         for (const rule of this.rules) {
@@ -32,8 +46,8 @@ export class Hand {
     // creates a map of the inputHand where the key is the card value and the value is the number of cards of that value
     private createCardValueMap(): Map<string, number> {
         const cardValueMap: Map<string, number> = new Map();
-        for (const identifier of this.inputHand) {
-            let currentValue = Card.fromIdentifier(identifier).getValue();
+        for (const card of this.inputHand) {
+            let currentValue = card.getValue();
             if (cardValueMap.has(currentValue)) {
                 cardValueMap.set(currentValue, cardValueMap.get(currentValue) + 1);
             } else {
@@ -44,3 +58,5 @@ export class Hand {
         return cardValueMap;
     }
 }
+
+export type FiveCards = [Card, Card, Card, Card, Card];
