@@ -6,7 +6,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(royalFlush);
         const expectedScore = 10;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -16,7 +16,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(straightFlush);
         const expectedScore = 9;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -27,7 +27,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(fourOfAKind);
         const expectedScore = 8;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -37,7 +37,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(fullHouse)
         const expectedScore = 7;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -47,7 +47,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(flush);
         const expectedScore = 6;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -57,7 +57,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(straight)
         const expectedScore = 5;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -67,7 +67,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(threeOfAKind);
         const expectedScore = 4;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -77,7 +77,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(twoPairs);
         const expectedScore = 3;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -87,7 +87,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(pair);
         const expectedScore = 2;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
@@ -97,7 +97,7 @@ describe('Hand', () => {
         const hand = Hand.fromIdentifiers(highCard);
         const expectedScore = 1;
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });

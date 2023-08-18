@@ -31,7 +31,7 @@ export class Hand {
         return new Hand(fiveCards);
     }
 
-    calculateScore(): number {
+    getScore(): number {
         this.cardValueMap = this.createCardValueMap();
 
         for (const rule of this.rules) {

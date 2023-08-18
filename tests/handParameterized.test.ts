@@ -16,7 +16,7 @@ describe('Hand', () => {
     ])('should return %p when hand is %p', (expectedScore, inputHand) => {
         const hand = Hand.fromIdentifiers(inputHand);
 
-        const actualScore = hand.calculateScore();
+        const actualScore = hand.getScore();
 
         expect(actualScore).toEqual(expectedScore);
     });
