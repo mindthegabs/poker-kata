@@ -2,7 +2,7 @@ import {InvalidIdentifierLength} from "./errors/InvalidIdentifierLength.ts";
 import {InvalidValue} from "./errors/InvalidValue.ts";
 import {InvalidSuit} from "./errors/InvalidSuit.ts";
 
- enum CardValue {
+ export enum CardValue {
     Two = '2',
     Three = '3',
     Four = '4',

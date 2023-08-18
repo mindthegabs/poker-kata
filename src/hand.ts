@@ -1,4 +1,5 @@
 import {Card} from './card.ts';
+import {CardValue} from './card.ts';
 import {Pair} from './rules/pair.ts';
 import {TwoPairs} from "./rules/twoPairs.ts";
 import {ThreeOfAKind} from "./rules/threeOfAKind.ts";
@@ -13,9 +14,9 @@ export class Hand {
     private cardValueMap: Map<string, number>;
     private readonly inputHand: FiveCards;
     private highCardScore = 1;
-    private rules= [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
+    private rules = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
-    
+
     constructor(inputHand: FiveCards) {
         this.inputHand = inputHand;
     }
@@ -44,19 +45,14 @@ export class Hand {
     }
 
     // creates a map of the inputHand where the key is the card value and the value is the number of cards of that value
-    private createCardValueMap(): Map<string, number> {
-        const cardValueMap: Map<string, number> = new Map();
-        for (const card of this.inputHand) {
-            let currentValue = card.getValue();
-            if (cardValueMap.has(currentValue)) {
-                cardValueMap.set(currentValue, cardValueMap.get(currentValue) + 1);
-            } else {
-                cardValueMap.set(currentValue, 1);
-            }
-        }
-
-        return cardValueMap;
+    private createCardValueMap(): Map<CardValue, number> {
+        return this.inputHand.reduce((valueMap, card) => {
+            const value = card.getValue();
+            valueMap.set(value, (valueMap.get(value) || 0) + 1);
+            return valueMap;
+        }, new Map<CardValue, number>());
     }
+
 }
 
 export type FiveCards = [Card, Card, Card, Card, Card];
