@@ -8,15 +8,11 @@ export class FullHouse extends Rule{
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        if (cardValueMap.size !== 2) {
-            return false;
-        }
+        const valueOccurrences = Array.from(cardValueMap.values());
 
-        const cardValues = Array.from(cardValueMap.values());
-        const [cardValue1, cardValue2] = cardValues;
+        const numberOfPairs = valueOccurrences.reduce((count, value) => count + (value === 2 ? 1: 0), 0);
+        const numberOfTriplets = valueOccurrences.reduce((count, value) => count + (value === 3 ? 1: 0), 0);
 
-        return cardValue1 == 3 && cardValue2 == 2 || cardValue2 == 3 && cardValue1 == 2;
-        
-
+        return numberOfPairs === 1 && numberOfTriplets === 1;
     }
 }

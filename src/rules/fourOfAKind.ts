@@ -8,11 +8,8 @@ export class FourOfAKind extends Rule{
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        for (const valueOccurrences of cardValueMap.values()) {
-            if (valueOccurrences === 4) {
-                return true;
-            }
-        }
-        return false;
+        const valueOccurrences = Array.from(cardValueMap.values());
+
+        return valueOccurrences.includes(4);
     }
 }

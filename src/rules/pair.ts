@@ -8,6 +8,11 @@ export class Pair extends Rule {
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map <string, number>): boolean {
-        return cardValueMap.size === 4;
+        const valueOccurrences = Array.from(cardValueMap.values());
+
+        const numberOfPairs = valueOccurrences.reduce((count, value) => count + (value === 2 ? 1: 0), 0);
+        const numberOfTriplets = valueOccurrences.reduce((count, value) => count + (value === 3 ? 1: 0), 0);
+
+        return numberOfPairs === 1 && numberOfTriplets === 0;
     }
 }
