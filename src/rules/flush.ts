@@ -8,13 +8,8 @@ export class Flush extends Rule{
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        const suit = inputHand[0].getSuit();
+        const firstCard = inputHand[0];
 
-        for (const card of inputHand) {
-            if (card.getSuit() !== suit) {
-                return false;
-            }
-        }
-        return true;
+        return inputHand.every((card) => card.hasSameSuitAs(firstCard));
     }
 }

@@ -44,6 +44,12 @@ export class Card {
     getSuit(): CardSuit {
         return this._suit;
     }
+
+    hasSameSuitAs(card: Card): boolean {
+        return this._suit === card._suit;
+    }
+
+
 }
 
 class CardValidator {

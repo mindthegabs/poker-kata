@@ -11,15 +11,10 @@ export class RoyalFlush extends Rule {
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        return RoyalFlush.containsRoyalFlushValues(cardValueMap) && new Flush().checkRule(inputHand, cardValueMap);
+        return this.containsRoyalFlushValues(cardValueMap) && new Flush().checkRule(inputHand, cardValueMap);
     }
 
-    private static containsRoyalFlushValues(cardValueMap): boolean {
-        for (const value of RoyalFlush.royalFlushValues) {
-            if (!cardValueMap.has(value)) {
-                return false;
-            }
-        }
-        return true;
+    private containsRoyalFlushValues(cardValueMap): boolean {
+        return RoyalFlush.royalFlushValues.every((value) => cardValueMap.has(value));
     }
 }
