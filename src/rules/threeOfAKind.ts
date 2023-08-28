@@ -8,11 +8,11 @@ export class ThreeOfAKind extends Rule {
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        for (const valueOccurrences of cardValueMap.values()) {
-            if (valueOccurrences === 3) {
-                return true;
-            }
-        }
-        return false;
+        const valueOccurrences = Array.from(cardValueMap.values());
+
+        const numberOfPairs = valueOccurrences.reduce((count, value) => count + (value === 2 ? 1: 0), 0);
+        const numberOfTriplets = valueOccurrences.reduce((count, value) => count + (value === 3 ? 1: 0), 0);
+
+        return numberOfPairs === 0 && numberOfTriplets === 1;
     }
 }
