@@ -13,7 +13,7 @@ import {StraightFlush} from "./rules/straightFlush.ts";
 export class Hand {
     private cardValueMap: Map<string, number>;
     private readonly inputHand: FiveCards;
-    private highCardScore = 1;
+    private readonly highCardScore = 1;
     private rules = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
 
 
@@ -37,7 +37,7 @@ export class Hand {
 
         for (const rule of this.rules) {
             if (rule.checkRule(this.inputHand, this.cardValueMap)) {
-                return rule.score;
+                return rule.getScore();
             }
         }
 
@@ -52,7 +52,6 @@ export class Hand {
             return valueMap;
         }, new Map<CardValue, number>());
     }
-
 }
 
 export type FiveCards = [Card, Card, Card, Card, Card];
