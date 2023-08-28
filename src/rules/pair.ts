@@ -1,5 +1,6 @@
 import {Rule} from "../rule.ts";
 import {FiveCards} from "../hand.ts";
+import {checkNumberOfPairsAndTriplets} from "./cardCombinationUtils.ts";
 
 export class Pair extends Rule {
     constructor() {
@@ -7,12 +8,7 @@ export class Pair extends Rule {
         this.score = 2;
     }
 
-    checkRule(inputHand: FiveCards, cardValueMap: Map <string, number>): boolean {
-        const valueOccurrences = Array.from(cardValueMap.values());
-
-        const numberOfPairs = valueOccurrences.reduce((count, value) => count + (value === 2 ? 1: 0), 0);
-        const numberOfTriplets = valueOccurrences.reduce((count, value) => count + (value === 3 ? 1: 0), 0);
-
-        return numberOfPairs === 1 && numberOfTriplets === 0;
+    checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
+        return checkNumberOfPairsAndTriplets(cardValueMap, 1, 0);
     }
 }
