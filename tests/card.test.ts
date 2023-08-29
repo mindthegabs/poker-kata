@@ -1,7 +1,7 @@
-import {Card} from '../src/card';
-import {InvalidSuit} from "../src/errors/InvalidSuit";
-import {InvalidValue} from "../src/errors/InvalidValue";
-import {InvalidIdentifierLength} from "../src/errors/InvalidIdentifierLength";
+import {Card} from '../src/card/card';
+import {InvalidSuit} from "../src/card/InvalidSuit";
+import {InvalidValue} from "../src/card/InvalidValue";
+import {InvalidIdentifierLength} from "../src/card/InvalidIdentifierLength";
 
 describe('Card', () => {
     it('should create a card with the specified identifier', () => {

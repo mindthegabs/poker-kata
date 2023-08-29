@@ -1,5 +1,5 @@
-import {Card} from './card.ts';
-import {CardValue} from './card.ts';
+import {Card} from './card/card.ts';
+import {CardValue} from "./card/cardValue.ts";
 import {Pair} from './rules/pair.ts';
 import {TwoPairs} from "./rules/twoPairs.ts";
 import {ThreeOfAKind} from "./rules/threeOfAKind.ts";
@@ -15,7 +15,6 @@ export class Hand {
     private readonly inputHand: FiveCards;
     private readonly highCardScore = 1;
     private rules = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
-
 
     constructor(inputHand: FiveCards) {
         this.inputHand = inputHand;
