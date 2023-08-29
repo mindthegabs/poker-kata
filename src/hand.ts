@@ -9,12 +9,12 @@ import {Flush} from "./rules/flush.ts";
 import {FullHouse} from "./rules/fullHouse.ts";
 import {RoyalFlush} from "./rules/royalFlush.ts";
 import {StraightFlush} from "./rules/straightFlush.ts";
+import {HighCard} from "./rules/highCard.ts";
 
 export class Hand {
     private cardValueMap: Map<string, number>;
     private readonly inputHand: FiveCards;
-    private readonly highCardScore = 1;
-    private rules = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair()];
+    private rules = [new RoyalFlush(), new StraightFlush(), new FourOfAKind(), new FullHouse(), new Flush(), new Straight(), new ThreeOfAKind(), new TwoPairs(), new Pair(), new HighCard()];
 
     constructor(inputHand: FiveCards) {
         this.inputHand = inputHand;
@@ -39,8 +39,6 @@ export class Hand {
                 return rule.getScore();
             }
         }
-
-        return this.highCardScore;
     }
 
     // creates a map of the inputHand where the key is the card value and the value is the number of cards of that value
