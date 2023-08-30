@@ -1,6 +1,5 @@
-import { FiveCards } from "../hand.ts";
+import {FiveCards, Hand} from "../hand.ts";
 import {Rule} from "../rule.ts";
-import {checkNumberOfPairsAndTriplets} from "./cardCombinationUtils.ts";
 
 export class ThreeOfAKind extends Rule {
     constructor() {
@@ -9,6 +8,6 @@ export class ThreeOfAKind extends Rule {
     }
 
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        return checkNumberOfPairsAndTriplets(cardValueMap, 0, 1);
+        return Hand.checkNumberOfPairsAndTriplets(cardValueMap, 0, 1);
     }
 }
