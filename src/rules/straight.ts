@@ -1,5 +1,6 @@
 import {Rule} from "../rule.ts";
 import {FiveCards} from "../hand.ts";
+import {cardValues} from "../card/cardValue.ts";
 
 export class Straight extends Rule {
     constructor() {
@@ -7,33 +8,15 @@ export class Straight extends Rule {
         this.score = 5;
     }
 
-    private static readonly cardValuesDictionary = {
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        'T': 10,
-        'J': 11,
-        'Q': 12,
-        'K': 13,
-        'A': 14
-    }
-
     checkRule(inputHand: FiveCards, cardValueMap: Map<string, number>): boolean {
-        const numericInputHandValues: number[] = inputHand.map((card) => Straight.cardValuesDictionary[card.getValue()]);
+        const inputHandSortedByValue = inputHand.sort((firstCard, secondCard) =>
+            cardValues.indexOf(firstCard.getValue()) - cardValues.indexOf(secondCard.getValue()));
 
-        numericInputHandValues.sort((a, b) => a - b);
-
-        for (let i = 1; i < numericInputHandValues.length; i++) {
-            if (numericInputHandValues[i] - numericInputHandValues[i - 1] !== 1) {
+        for (let i = 1; i < inputHandSortedByValue.length - 1; i++) {
+            if (!inputHandSortedByValue[i + 1].isNextCardAfter(inputHandSortedByValue[i])) {
                 return false;
             }
         }
-
         return true;
     }
 }

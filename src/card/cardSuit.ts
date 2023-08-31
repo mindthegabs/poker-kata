@@ -1,6 +1,2 @@
-export enum CardSuit {
-    Diamond = 'd',
-    Heart = 'h',
-    Spade = 's',
-    Club = 'c',
-}
+export const cardSuits = ['d', 'h', 's', 'c'];
+export type CardSuit = typeof cardSuits[number];

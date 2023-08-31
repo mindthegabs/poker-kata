@@ -1,9 +1,9 @@
-import {CardValue} from "./cardValue.ts";
+import {CardValue, cardValues} from "./cardValue.ts";
 import {CardSuit} from "./cardSuit.ts";
 import {CardValidator} from "./cardValidator.ts";
 
 export class Card {
-    private constructor(private readonly _value: CardValue, private readonly _suit: CardSuit) {}
+    private constructor(private readonly value: CardValue, private readonly suit: CardSuit) {}
 
     static fromIdentifier(identifier: string): Card {
         CardValidator.validateCard(identifier);
@@ -15,14 +15,18 @@ export class Card {
     }
 
     getValue(): CardValue {
-        return this._value;
+        return this.value;
     }
 
     getSuit(): CardSuit {
-        return this._suit;
+        return this.suit;
     }
 
     hasSameSuitAs(card: Card): boolean {
-        return this._suit === card._suit;
+        return this.suit === card.getSuit();
+    }
+
+    isNextCardAfter(card: Card): boolean {
+        return cardValues.indexOf(this.value) === cardValues.indexOf(card.getValue()) + 1;
     }
 }

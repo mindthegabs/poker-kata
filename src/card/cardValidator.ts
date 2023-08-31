@@ -1,9 +1,8 @@
 import {InvalidIdentifierLength} from "./InvalidIdentifierLength.ts";
 import {InvalidValue} from "./InvalidValue.ts";
 import {InvalidSuit} from "./InvalidSuit.ts";
-import {CardValue} from "./cardValue.ts";
-import {CardSuit} from "./cardSuit.ts";
-
+import {cardValues} from "./cardValue.ts";
+import {cardSuits} from "./cardSuit.ts";
 
 export class CardValidator {
     static validateCard(identifier: string): void {
@@ -11,14 +10,14 @@ export class CardValidator {
             throw new InvalidIdentifierLength(identifier);
         }
 
-        const value = identifier.charAt(0) as CardValue;
-        const suit = identifier.charAt(1) as CardSuit;
+        const value = identifier.charAt(0);
+        const suit = identifier.charAt(1);
 
-        if (!Object.values(CardValue).includes(value)) {
+       if (!cardValues.includes(value)) {
             throw new InvalidValue(identifier);
         }
 
-        if (!Object.values(CardSuit).includes(suit)) {
+        if (!cardSuits.includes(suit)) {
             throw new InvalidSuit(identifier);
         }
     }
